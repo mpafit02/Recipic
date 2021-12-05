@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
@@ -21,19 +22,25 @@ android {
     buildTypes {
         proguard {
             debuggable false
-            minifyEnabled true
-            shrinkResources true
+//            minifyEnabled false
+//            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro', 'proguard.cfg'
             testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro', 'proguard.cfg'
         }
         testBuildType "proguard"
         release {
-            minifyEnabled true
+            debuggable false
+//            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            minifyEnabled false
-            proguardFiles 'proguard-rules.pro'
+            debuggable true
+//            minifyEnabled false
+//            proguardFiles 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        customDebuggableBuildType {
+            debuggable true
         }
     }
 

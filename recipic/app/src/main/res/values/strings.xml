@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Recipic</string>
+    <string name="tv_ml_result">Result</string>
+    <string name="choose_picture">Choose Picture</string>
+    <string name="find_recipes">Find Recipes</string>
+    <string name="preference_file_key">1627384950</string>
+    <string name="saved_labels">SAVED_LABELS</string>
+    <string name="recipes_title">Recipes</string>
+</resources>

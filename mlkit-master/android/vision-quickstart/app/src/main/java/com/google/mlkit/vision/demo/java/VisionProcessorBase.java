@@ -58,6 +58,7 @@ import java.util.TimerTask;
 /**
  * Abstract base class for vision frame processors. Subclasses need to implement {@link
  * #onSuccess(Object, GraphicOverlay)} to define what they want to with the detection results and
+ * #onSuccess(Object, GraphicOverlay)} to define what they want to with the detection results and
  * {@link #detectInImage(InputImage)} to specify the detector object.
  *
  * @param <T> The type of the detected feature.

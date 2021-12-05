@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "194623041947",
+    "project_id": "recipic-428aa",
+    "storage_bucket": "recipic-428aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194623041947:android:2e20bba3a12cfc43c1f13e",
+        "android_client_info": {
+          "package_name": "com.wss503.recipic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194623041947-k7t356n3dh76s7eovppmv81gdapv430g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs2AnXv-6updi3rDJf8ULk0EOVMz1JVDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194623041947-k7t356n3dh76s7eovppmv81gdapv430g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

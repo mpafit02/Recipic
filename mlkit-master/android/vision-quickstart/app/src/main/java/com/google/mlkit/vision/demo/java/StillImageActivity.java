@@ -37,8 +37,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.common.annotation.KeepName;
+import com.google.android.gms.tasks.Task;
 import com.google.mlkit.common.model.LocalModel;
 import com.google.mlkit.vision.demo.BitmapUtils;
 import com.google.mlkit.vision.demo.GraphicOverlay;
@@ -55,6 +57,7 @@ import com.google.mlkit.vision.demo.preference.PreferenceUtils;
 import com.google.mlkit.vision.demo.preference.SettingsActivity;
 import com.google.mlkit.vision.label.custom.CustomImageLabelerOptions;
 import com.google.mlkit.vision.label.defaults.ImageLabelerOptions;
+import com.google.mlkit.vision.objects.DetectedObject;
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions;
 import com.google.mlkit.vision.objects.defaults.ObjectDetectorOptions;
 import com.google.mlkit.vision.pose.PoseDetectorOptionsBase;
@@ -358,12 +361,17 @@ public final class StillImageActivity extends AppCompatActivity {
                 true);
       }
 
+//      String labelsStr = ((ObjectDetectorProcessor)imageProcessor).getLabels();
+      TextView labelsTextView = (TextView) findViewById(R.id.textViewLabels);
+      labelsTextView.setText("Test string");
+
       preview.setImageBitmap(resizedBitmap);
 
       if (imageProcessor != null) {
         graphicOverlay.setImageSourceInfo(
             resizedBitmap.getWidth(), resizedBitmap.getHeight(), /* isFlipped= */ false);
         imageProcessor.processBitmap(resizedBitmap, graphicOverlay);
+
       } else {
         Log.e(TAG, "Null imageProcessor, please check adb logs for imageProcessor creation error");
       }

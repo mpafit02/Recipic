@@ -232,6 +232,7 @@ public class GraphicOverlay extends View {
       updateTransformationIfNeeded();
 
       for (Graphic graphic : graphics) {
+//        System.out.println(canvas.toString());
         graphic.draw(canvas);
       }
     }

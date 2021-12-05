@@ -19,9 +19,13 @@ package com.google.mlkit.vision.demo.java.objectdetector;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+
 import com.google.android.gms.tasks.Task;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.demo.GraphicOverlay;
+import com.google.mlkit.vision.demo.R;
 import com.google.mlkit.vision.demo.java.VisionProcessorBase;
 import com.google.mlkit.vision.objects.DetectedObject;
 import com.google.mlkit.vision.objects.ObjectDetection;
@@ -35,12 +39,17 @@ public class ObjectDetectorProcessor extends VisionProcessorBase<List<DetectedOb
   private static final String TAG = "ObjectDetectorProcessor";
 
   private final ObjectDetector detector;
+  private String labels;
 
   public ObjectDetectorProcessor(Context context, ObjectDetectorOptionsBase options) {
     super(context);
     detector = ObjectDetection.getClient(options);
+    labels = "";
   }
 
+  public String getLabels(){
+    return labels;
+  }
   @Override
   public void stop() {
     super.stop();
@@ -55,9 +64,15 @@ public class ObjectDetectorProcessor extends VisionProcessorBase<List<DetectedOb
   @Override
   protected void onSuccess(
       @NonNull List<DetectedObject> results, @NonNull GraphicOverlay graphicOverlay) {
+    System.out.println("Labels detected:");
+    String labelsStr = "";
     for (DetectedObject object : results) {
       graphicOverlay.add(new ObjectGraphic(graphicOverlay, object));
+      for (DetectedObject.Label label : object.getLabels()) {
+        labelsStr = labelsStr + " " + label.toString();
+      }
     }
+    this.labels = labelsStr;
   }
 
   @Override
