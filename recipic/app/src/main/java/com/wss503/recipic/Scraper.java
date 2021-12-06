@@ -56,7 +56,13 @@ public class Scraper extends AsyncTask<Object, Void, ArrayList<Recipe>> {
                 Elements instructionsElements = ingredientsPreparation.getElementsByClass("preparation");
                 ArrayList<String> instructions = new ArrayList<String>();
                 for (Element instructionsElement : instructionsElements) {
-                    instructions.add(instructionsElement.text());
+                    Elements steps = instructionsElement.getElementsByClass("prep-steps");
+                    for (Element step : steps) {
+                        Elements stepLIs = step.getElementsByTag("li");
+                        for (Element stepLi : stepLIs) {
+                            instructions.add(stepLi.text());
+                        }
+                    }
                 }
                 return new Recipe(title, imgUrl, recipeUrl, ingredients, instructions, servings);
             }
@@ -99,6 +105,8 @@ public class Scraper extends AsyncTask<Object, Void, ArrayList<Recipe>> {
         this.getRecipes(link);
 
         // Filter with the labels
+        int limit = 8;
+        int count = 0;
         ArrayList<Recipe> filteredRecipes = new ArrayList<Recipe>();
         for (Recipe recipe : this.recipes) {
             boolean isAdded = false;
@@ -108,6 +116,7 @@ public class Scraper extends AsyncTask<Object, Void, ArrayList<Recipe>> {
                         if(ingredient.toLowerCase(Locale.ROOT).contains(label.toLowerCase(Locale.ROOT))){
                             filteredRecipes.add(recipe);
                             isAdded = true;
+                            count += 1;
                             break;
                         }
                     }
@@ -118,6 +127,9 @@ public class Scraper extends AsyncTask<Object, Void, ArrayList<Recipe>> {
                 if(isAdded){
                     break;
                 }
+            }
+            if(count >= limit){
+                break;
             }
         }
         return filteredRecipes;

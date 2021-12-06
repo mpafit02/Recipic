@@ -5,12 +5,14 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -60,7 +62,19 @@ public class RecipesViewActivity extends AppCompatActivity {
             this.recipesArrayList = this.scraper.execute(this.labels, this.category).get();
             llRecipes = (LinearLayout) findViewById(R.id.llRecipes);
             for(Recipe recipe : recipesArrayList){
+
                 CardView cardview = createRecipeCard(recipe);
+
+                cardview.setOnClickListener(new View.OnClickListener() {
+                    @Override public void onClick(View v) {
+
+                        Intent switchActivityIntent = new Intent(RecipesViewActivity.this, RecipeDetailsActivity.class);
+                        switchActivityIntent.putExtra("RECIPE_EXTRA", (Parcelable) recipe);
+                        startActivity(switchActivityIntent);
+
+                    }
+                });
+
                 llRecipes.addView(cardview);
             }
         } catch (ExecutionException e) {

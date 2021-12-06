@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Recipic">
         <activity
+            android:name=".RecipeDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".RecipesViewActivity"
             android:exported="false" />
         <activity

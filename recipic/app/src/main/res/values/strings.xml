@@ -6,4 +6,5 @@
     <string name="preference_file_key">1627384950</string>
     <string name="saved_labels">SAVED_LABELS</string>
     <string name="recipes_title">Recipes</string>
+    <string name="recipe_details_title">Recipe Details</string>
 </resources>
