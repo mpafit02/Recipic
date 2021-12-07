@@ -169,7 +169,7 @@ public class ObjectDetectorCustomActivity extends AppCompatActivity {
                     Toast.makeText(ObjectDetectorCustomActivity.this, "Searching for recipes ...", Toast.LENGTH_LONG).show();
 
 //                    pbScraper.setVisibility(View.VISIBLE);
-                    bChoosePicture.setEnabled(false);
+//                    bChoosePicture.setEnabled(false);
                     bFindRecipes.setEnabled(false);
 
                     Context context = ObjectDetectorCustomActivity.this;

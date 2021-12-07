@@ -7,9 +7,11 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import com.squareup.picasso.Picasso;
 
@@ -29,6 +31,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         llCard.addView(createRecipeImage(recipe));
         llCard.addView(createRecipeTitle(recipe));
         llCard.addView(createRecipeIngredients(recipe));
+//        llCard.addView(createRecipeVideo(recipe));
         llCard.addView(createRecipeInstructions(recipe));
     }
 
@@ -56,6 +59,35 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         textView.setTypeface(null, Typeface.BOLD);
         textView.setPadding(25, 35, 25, 30);
         return textView;
+    }
+
+    private LinearLayout createRecipeVideo(Recipe recipe){
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        LinearLayout llVideo = new LinearLayout(RecipeDetailsActivity.this);
+        llVideo.setLayoutParams(layoutParams);
+
+        TextView tvIngredientsTitle = new TextView(RecipeDetailsActivity.this);
+        tvIngredientsTitle.setText("Video");
+        tvIngredientsTitle.setTextColor(Color.BLACK);
+        tvIngredientsTitle.setTextSize(22);
+        tvIngredientsTitle.setTypeface(null, Typeface.BOLD);
+        tvIngredientsTitle.setPadding(25, 25, 25, 20);
+        llVideo.addView(tvIngredientsTitle);
+
+        LinearLayout.LayoutParams layoutVideoParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutVideoParams.setMargins(10, 10, 10, 10);
+
+        VideoView videoView = new VideoView(RecipeDetailsActivity.this);
+        videoView.setLayoutParams(layoutVideoParams);
+        videoView.setVideoPath("http://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4");
+        videoView.start();
+
+        llVideo.addView(videoView);
+        return llVideo;
     }
 
     private LinearLayout createRecipeIngredients(Recipe recipe) {

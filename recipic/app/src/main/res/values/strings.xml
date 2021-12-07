@@ -7,4 +7,12 @@
     <string name="saved_labels">SAVED_LABELS</string>
     <string name="recipes_title">Recipes</string>
     <string name="recipe_details_title">Recipe Details</string>
+    <string name="dessert_category">DESSERT</string>
+    <string name="dinner_category">DINNER</string>
+    <string name="lunch_category">LUNCH</string>
+    <string name="breakfast_category">BREAKFAST</string>
+    <string name="title_category">What do we fancy making?</string>
+    <string name="saved_category">SAVED_CATEGORY</string>
+    <string name="search_new">New Search</string>
+    <string name="recipes_title_empty">No Recipes Found!</string>
 </resources>

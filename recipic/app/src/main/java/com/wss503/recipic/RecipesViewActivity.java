@@ -37,6 +37,8 @@ public class RecipesViewActivity extends AppCompatActivity {
     Set<String> labels;
     String category;
     LinearLayout llRecipes;
+    TextView tvRecipesTitle;
+    Button bNoRecipes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +48,13 @@ public class RecipesViewActivity extends AppCompatActivity {
         Context context = this;
         SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         this.labels =  sharedPref.getStringSet(getString(R.string.saved_labels), new HashSet<String>());
-//        this.category =  sharedPref.getString(getString(R.string.saved_category), "breakfast");
+        this.category =  sharedPref.getString(getString(R.string.saved_category), "breakfast");
 
-        this.category = "breakfast";
-//        System.out.println(this.labels);
+        tvRecipesTitle = (TextView) findViewById(R.id.tvRecipesTitle);
+        tvRecipesTitle.setText(R.string.recipes_title);
 
-//        Button bChoosePicture = findViewById(R.id.bChoosePicture);
-//        Button bFindRecipes = findViewById(R.id.bFindRecipes);
-//        bChoosePicture.setEnabled(true);
-//        bFindRecipes.setEnabled(true);
+        bNoRecipes = (Button) findViewById(R.id.bNoRecipes);
+        bNoRecipes.setVisibility(View.GONE);
 
         // Initiate the scrapper
         this.scraper = new Scraper();
@@ -76,6 +76,16 @@ public class RecipesViewActivity extends AppCompatActivity {
                 });
 
                 llRecipes.addView(cardview);
+            }
+
+            if(recipesArrayList.isEmpty()){
+                Button bNoRecipes = (Button) findViewById(R.id.bNoRecipes);
+                bNoRecipes.setVisibility(View.VISIBLE);
+                tvRecipesTitle.setText(R.string.recipes_title_empty);
+//                Button bChoosePicture = findViewById(R.id.bChoosePicture);
+//                Button bFindRecipes = findViewById(R.id.bFindRecipes);
+//                bChoosePicture.setEnabled(true);
+//                bFindRecipes.setEnabled(true);
             }
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -165,4 +175,7 @@ public class RecipesViewActivity extends AppCompatActivity {
         return textView;
     }
 
+    public void onCLickNewSearch(View view) {
+        super.onBackPressed();
+    }
 }
