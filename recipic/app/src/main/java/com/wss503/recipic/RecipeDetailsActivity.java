@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -27,12 +31,12 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         this.recipe = intent.getParcelableExtra("RECIPE_EXTRA");
 
-        LinearLayout llCard = (LinearLayout) findViewById(R.id.llRecipeDetails);
-        llCard.addView(createRecipeImage(recipe));
-        llCard.addView(createRecipeTitle(recipe));
-        llCard.addView(createRecipeIngredients(recipe));
-//        llCard.addView(createRecipeVideo(recipe));
-        llCard.addView(createRecipeInstructions(recipe));
+        LinearLayout llRecipeDetails = (LinearLayout) findViewById(R.id.llRecipeDetails);
+        llRecipeDetails.addView(createRecipeImage(recipe));
+        llRecipeDetails.addView(createRecipeTitle(recipe));
+        llRecipeDetails.addView(createRecipeIngredients(recipe));
+        llRecipeDetails.addView(createRecipeVideo(recipe));
+        llRecipeDetails.addView(createRecipeInstructions(recipe));
     }
 
     private ImageView createRecipeImage(Recipe recipe) {
@@ -63,12 +67,13 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
     private LinearLayout createRecipeVideo(Recipe recipe){
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
 
         LinearLayout llVideo = new LinearLayout(RecipeDetailsActivity.this);
         llVideo.setLayoutParams(layoutParams);
+        llVideo.setOrientation(LinearLayout.VERTICAL);
 
         TextView tvIngredientsTitle = new TextView(RecipeDetailsActivity.this);
         tvIngredientsTitle.setText("Video");
@@ -78,15 +83,55 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         tvIngredientsTitle.setPadding(25, 25, 25, 20);
         llVideo.addView(tvIngredientsTitle);
 
-        LinearLayout.LayoutParams layoutVideoParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutVideoParams.setMargins(10, 10, 10, 10);
+        String URL = "https://media.geeksforgeeks.org/wp-content/uploads/20201217192146/Screenrecorder-2020-12-17-19-17-36-828.mp4?_=1";
 
-        VideoView videoView = new VideoView(RecipeDetailsActivity.this);
-        videoView.setLayoutParams(layoutVideoParams);
-        videoView.setVideoPath("http://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4");
-        videoView.start();
+        if(URL.isEmpty()){
 
-        llVideo.addView(videoView);
+            TextView tvServings = new TextView(RecipeDetailsActivity.this);
+            tvServings.setText("No video available");
+            tvServings.setTextColor(Color.BLACK);
+            tvServings.setTextSize(16);
+            tvServings.setPadding(25, 10, 25, 40);
+            llVideo.addView(tvServings);
+
+        }else{
+            LinearLayout llVideoButton = new LinearLayout(RecipeDetailsActivity.this);
+            llVideoButton.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            llVideoButton.setGravity(Gravity.CENTER);
+            llVideoButton.setOrientation(LinearLayout.HORIZONTAL);
+
+            Button bVideo = new Button(this);
+            bVideo.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            bVideo.setText("Recipe Video");
+            bVideo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW );
+                    intent.setDataAndType(Uri.parse(URL), "video/*");
+                    startActivity(intent);
+
+                }
+            });
+            llVideoButton.addView(bVideo);
+            llVideo.addView(llVideoButton);
+
+
+//            LinearLayout.LayoutParams layoutVideoParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+//            layoutVideoParams.setMargins(10, 10, 10, 10);
+//
+//            VideoView videoView = findViewById(R.id.videoView);
+//            videoView.setLayoutParams(layoutVideoParams);
+//            videoView.setVideoURI(Uri.parse(URL));
+//
+//            MediaController mediaController = new MediaController(this);
+//            mediaController.setAnchorView(videoView);
+//            mediaController.setMediaPlayer(videoView);
+//            videoView.setMediaController(mediaController);
+//            videoView.start();
+//
+//            llVideo.addView(videoView);
+        }
+
         return llVideo;
     }
 
