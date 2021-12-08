@@ -32,6 +32,16 @@ public class Scraper extends AsyncTask<Object, Void, ArrayList<Recipe>> {
     private Recipe getDetails(String recipeUrl, String title, String imgUrl) {
         try {
             Document document = Jsoup.connect(recipeUrl).get();
+
+            Elements videos = document.getElementsByClass("video");
+            String videoUrl = "";
+            for (Element video : videos) {
+                Elements videoElements = video.getElementsByClass("link-tasty");
+                if (videoElements != null && !videoElements.isEmpty()) {
+                    videoUrl = videoElements.attr("href");
+                }
+            }
+
             Elements ingredientsPreparations = document.getElementsByClass("ingredients-prep");
             for (Element ingredientsPreparation : ingredientsPreparations) {
                 String servings = ingredientsPreparation.getElementsByClass("servings-display").text();
@@ -64,7 +74,7 @@ public class Scraper extends AsyncTask<Object, Void, ArrayList<Recipe>> {
                         }
                     }
                 }
-                return new Recipe(title, imgUrl, recipeUrl, ingredients, instructions, servings);
+                return new Recipe(title, imgUrl, videoUrl,recipeUrl, ingredients, instructions, servings);
             }
             System.out.println("Returned null");
             return null;

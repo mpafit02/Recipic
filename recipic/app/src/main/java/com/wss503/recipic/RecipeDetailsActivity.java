@@ -83,7 +83,8 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         tvIngredientsTitle.setPadding(25, 25, 25, 20);
         llVideo.addView(tvIngredientsTitle);
 
-        String URL = "https://media.geeksforgeeks.org/wp-content/uploads/20201217192146/Screenrecorder-2020-12-17-19-17-36-828.mp4?_=1";
+//        String URL = recipe.videoUrl;
+        String URL = "https://vid.tasty.co/output/65088/landscape_480/1512083102";
 
         if(URL.isEmpty()){
 

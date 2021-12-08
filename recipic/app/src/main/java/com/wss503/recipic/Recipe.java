@@ -9,15 +9,17 @@ import java.util.HashMap;
 public class Recipe implements Parcelable {
     String title;
     String imgUrl;
+    String videoUrl;
     String recipeUrl;
     HashMap<String, ArrayList<String>> ingredients;
     ArrayList<String> instructions;
     String servings;
 
-    public Recipe(String title, String imgUrl, String recipeUrl, HashMap<String, ArrayList<String>> ingredients,
+    public Recipe(String title, String imgUrl, String videoUrl, String recipeUrl, HashMap<String, ArrayList<String>> ingredients,
                   ArrayList<String> instructions, String servings) {
         this.title = title;
         this.imgUrl = imgUrl;
+        this.videoUrl = videoUrl;
         this.recipeUrl = recipeUrl;
         this.ingredients = ingredients;
         this.instructions = instructions;
@@ -27,6 +29,7 @@ public class Recipe implements Parcelable {
     protected Recipe(Parcel in) {
         title = in.readString();
         imgUrl = in.readString();
+        videoUrl = in.readString();
         recipeUrl = in.readString();
         ingredients = (HashMap<String, ArrayList<String>>) in.readSerializable();
         instructions = (ArrayList<String>) in.readSerializable();
@@ -46,7 +49,7 @@ public class Recipe implements Parcelable {
     };
 
     public String toString() {
-        return "Recipe: { title: " + title + ", imgUrl: " + imgUrl + ", recipeUrl: " + recipeUrl + ", ingredients: "
+        return "Recipe: { title: " + title + ", imgUrl: " + imgUrl + ", videoUrl: " + videoUrl + ", recipeUrl: " + recipeUrl + ", ingredients: "
                 + ingredients + ", instructions: " + instructions + ", servings: " + servings + " }\n";
     }
 
@@ -59,6 +62,7 @@ public class Recipe implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(title);
         parcel.writeString(imgUrl);
+        parcel.writeString(videoUrl);
         parcel.writeString(recipeUrl);
         parcel.writeSerializable(ingredients);
         parcel.writeSerializable(instructions);
