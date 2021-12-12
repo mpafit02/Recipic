@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -61,9 +62,13 @@ public class ProfileActivity extends AppCompatActivity {
                         Intent a = new Intent(ProfileActivity.this, CategoriesActivity.class);
                         startActivity(a);
                         break;
-                    case R.id.ic_upload:
+                    case R.id.ic_photos:
                         Intent b = new Intent(ProfileActivity.this, MyPhotosActivity.class);
                         startActivity(b);
+                        break;
+                    case R.id.ic_upload:
+                        Intent c = new Intent(ProfileActivity.this, UploadActivity.class);
+                        startActivity(c);
                         break;
                 }
                 return true;
@@ -78,5 +83,12 @@ public class ProfileActivity extends AppCompatActivity {
             MenuItem item = menu.getItem(i);
             item.setChecked(item.getItemId() == actionId);
         }
+    }
+
+    public void onClickLogout(View view) {
+        Intent switchActivityIntent = new Intent(ProfileActivity.this, LoginActivity.class);
+        switchActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        switchActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(switchActivityIntent);
     }
 }

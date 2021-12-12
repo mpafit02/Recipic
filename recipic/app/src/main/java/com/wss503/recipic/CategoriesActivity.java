@@ -36,9 +36,13 @@ public class CategoriesActivity extends AppCompatActivity {
                         break;
                     case R.id.ic_takepic:
                         break;
-                    case R.id.ic_upload:
+                    case R.id.ic_photos:
                         Intent a = new Intent(CategoriesActivity.this, MyPhotosActivity.class);
                         startActivity(a);
+                        break;
+                    case R.id.ic_upload:
+                        Intent c = new Intent(CategoriesActivity.this, UploadActivity.class);
+                        startActivity(c);
                         break;
                 }
                 return true;

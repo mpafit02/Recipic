@@ -9,6 +9,10 @@
         android:title="Find Recipes"
         android:icon="@drawable/ic_takepic"/>
     <item
+        android:id="@+id/ic_photos"
+        android:title="Stories"
+        android:icon="@drawable/ic_image"/>
+    <item
         android:id="@+id/ic_upload"
         android:title="Stories"
         android:icon="@drawable/ic_upload"/>

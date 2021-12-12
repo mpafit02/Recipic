@@ -41,4 +41,9 @@
     <string name="saved_gender">SAVED_GENDER</string>
     <string name="saved_email">SAVED_EMAIL</string>
     <string name="upload_photo">Upload photo</string>
+    <string name="my_photos_title">My Stories</string>
+    <string name="saved_id">SAVED_ID</string>
+    <string name="string_choose_file">Choose File</string>
+    <string name="string_upload_image">Uplaod Image</string>
+    <string name="string_view_image">View Images</string>
 </resources>

@@ -103,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                         String lastname = details.getString(4);
                         String gender = details.getString(2);
                         String email = details.getString(1);
+                        int id = Integer.parseInt(details.getString(0));
 //
                         Context context = LoginActivity.this;
                         SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -111,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString(getString(R.string.saved_lastname), lastname);
                         editor.putString(getString(R.string.saved_gender), gender);
                         editor.putString(getString(R.string.saved_email), email);
+                        editor.putInt(getString(R.string.saved_id), id);
                         editor.commit();
 
                         Intent switchActivityIntentMain = new Intent(LoginActivity.this, CategoriesActivity.class);

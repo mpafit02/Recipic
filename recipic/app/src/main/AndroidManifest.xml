@@ -20,6 +20,9 @@
         android:theme="@style/Theme.Recipic"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".UploadActivity"
+            android:exported="false" />
+        <activity
             android:name=".MyPhotosActivity"
             android:exported="false" />
         <activity
