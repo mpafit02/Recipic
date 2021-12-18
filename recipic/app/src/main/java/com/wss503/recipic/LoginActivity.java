@@ -94,9 +94,8 @@ public class LoginActivity extends AppCompatActivity {
 
             try {
                 if (result != null) {
+                    Toast.makeText(getApplicationContext(), result.getString("message"), Toast.LENGTH_LONG).show();
                     if(result.getString("success").equals("1")) {
-                        Toast.makeText(getApplicationContext(), result.getString("message"), Toast.LENGTH_LONG).show();
-
                         // Successfully logged in
                         JSONArray details = result.getJSONArray("details");
                         String firstname = details.getString(3);

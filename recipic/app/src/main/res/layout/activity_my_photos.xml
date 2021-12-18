@@ -6,7 +6,9 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context=".MyPhotosActivity">
+    tools:context=".MyPhotosActivity"
+    android:background="@drawable/b4"
+    android:orientation="vertical">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -26,13 +28,19 @@
 
         <TextView
             android:id="@+id/tcMyPhotos"
-            android:layout_width="match_parent"
+            android:paddingVertical="5dp"
+            android:paddingHorizontal="40dp"
+            android:background="@drawable/rounded_corner"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
             android:text="@string/my_photos_title"
-            android:textSize="30sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
+            android:layout_margin="30dp"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold|italic"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">

@@ -193,6 +193,7 @@ public class ObjectDetectorCustomActivity extends AppCompatActivity {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onSuccess(@NonNull List<DetectedObject> detectedObjects) {
+                labelsSet.clear();
                 for (DetectedObject object :detectedObjects){
                     for(DetectedObject.Label label : object.getLabels()){
                         String labelTxt = label.getText();

@@ -1,5 +1,6 @@
 package com.wss503.recipic;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -7,18 +8,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Recipe implements Parcelable {
+    int id;
     String title;
-    String imgUrl;
+//    Bitmap imgBit;
     String videoUrl;
     String recipeUrl;
     HashMap<String, ArrayList<String>> ingredients;
     ArrayList<String> instructions;
     String servings;
 
-    public Recipe(String title, String imgUrl, String videoUrl, String recipeUrl, HashMap<String, ArrayList<String>> ingredients,
+//    public Recipe(String title, Bitmap imgBit, String videoUrl, String recipeUrl, HashMap<String, ArrayList<String>> ingredients,
+//                  ArrayList<String> instructions, String servings) {
+    public Recipe( String title, String videoUrl, String recipeUrl, HashMap<String, ArrayList<String>> ingredients,
                   ArrayList<String> instructions, String servings) {
+
+        this.id = 0;
         this.title = title;
-        this.imgUrl = imgUrl;
+//        this.imgBit = imgBit;
         this.videoUrl = videoUrl;
         this.recipeUrl = recipeUrl;
         this.ingredients = ingredients;
@@ -27,8 +33,9 @@ public class Recipe implements Parcelable {
     }
 
     protected Recipe(Parcel in) {
+        id = in.readInt();
         title = in.readString();
-        imgUrl = in.readString();
+//        imgBit = (Bitmap) in.readParcelable(Bitmap.class.getClassLoader());
         videoUrl = in.readString();
         recipeUrl = in.readString();
         ingredients = (HashMap<String, ArrayList<String>>) in.readSerializable();
@@ -49,7 +56,7 @@ public class Recipe implements Parcelable {
     };
 
     public String toString() {
-        return "Recipe: { title: " + title + ", imgUrl: " + imgUrl + ", videoUrl: " + videoUrl + ", recipeUrl: " + recipeUrl + ", ingredients: "
+        return "Recipe: { title: " + title + ", videoUrl: " + videoUrl + ", recipeUrl: " + recipeUrl + ", ingredients: "
                 + ingredients + ", instructions: " + instructions + ", servings: " + servings + " }\n";
     }
 
@@ -60,8 +67,9 @@ public class Recipe implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
         parcel.writeString(title);
-        parcel.writeString(imgUrl);
+//        parcel.writeValue(imgBit);
         parcel.writeString(videoUrl);
         parcel.writeString(recipeUrl);
         parcel.writeSerializable(ingredients);

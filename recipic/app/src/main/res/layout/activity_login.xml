@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    tools:context=".LoginActivity"-->
-<!--    android:layout_marginHorizontal="20dp">-->
-<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:background="@drawable/b2"
+    android:orientation="vertical">
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,10 +32,13 @@
 
             <TextView
                 android:id="@+id/tvSignin"
-                android:layout_width="match_parent"
+                android:paddingVertical="5dp"
+                android:paddingHorizontal="40dp"
+                android:background="@drawable/rounded_corner"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
-                android:background="#97DD9791"
                 android:backgroundTint="#20FFEB3B"
                 android:backgroundTintMode="add"
                 android:fontFamily="sans-serif-black"
@@ -49,14 +56,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:background="@color/text_field_color"
+                android:background="@drawable/rounded_corner_et"
+                android:textColor="@color/black"
+                android:textColorHint="@color/teal_700"
+                android:padding="15dp"
                 android:drawableLeft="@drawable/ic_baseline_person_outline_24"
                 android:drawablePadding="20dp"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/prompt_email"
                 android:inputType="textEmailAddress"
-                android:padding="10dp"
                 android:selectAllOnFocus="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +76,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@color/text_field_color"
+                android:background="@drawable/rounded_corner_et"
+                android:textColor="@color/black"
+                android:textColorHint="@color/teal_700"
+                android:padding="15dp"
                 android:drawableLeft="@drawable/ic_baseline_lock_open_24"
                 android:drawablePadding="20dp"
                 android:focusable="true"
@@ -76,7 +88,6 @@
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
-                android:padding="10dp"
                 android:selectAllOnFocus="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -141,3 +152,4 @@
     </RelativeLayout>
 
 </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>

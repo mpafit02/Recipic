@@ -2,7 +2,10 @@ package com.wss503.recipic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -19,14 +22,26 @@ import android.widget.VideoView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.HashSet;
+
 public class RecipeDetailsActivity extends AppCompatActivity {
 
     Recipe recipe;
+    String category;
+
+    int breakfasts[] = {R.drawable.hcr, R.drawable.whipped_coffee, R.drawable.cinnamon_rolls, R.drawable.fluffy_pancakes};
+    int lunches[] = {R.drawable.cheeseburger_pasta, R.drawable.mushroom_stroganoff, R.drawable.chicken_sandwich};
+    int dinners[] = {R.drawable.tomato_pasta, R.drawable.ingredient_pasta, R.drawable.garlic_pasta, R.drawable.chicken_fajita};
+    int desserts[] = {R.drawable.chip_cookies, R.drawable.butter_cookies, R.drawable.cinnamon_rolls, R.drawable.fudgy_brownies};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_details);
+
+        Context context = this;
+        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        this.category =  sharedPref.getString(getString(R.string.saved_category), "breakfast");
 
         Intent intent = getIntent();
         this.recipe = intent.getParcelableExtra("RECIPE_EXTRA");
@@ -50,7 +65,19 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         imageView.setLayoutParams(layoutParams);
         imageView.setAdjustViewBounds(true);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        Picasso.get().load(recipe.imgUrl).into(imageView);
+        int did = 0;
+        if(category.equals("breakfast")){
+            did = breakfasts[recipe.id];
+        }else if(category.equals("lunch")){
+            did = lunches[recipe.id];
+        }else if(category.equals("dinner")){
+            did = dinners[recipe.id];
+        }else if(category.equals("desserts")){
+            did = desserts[recipe.id];
+        }
+        imageView.setImageDrawable(getResources().getDrawable(did));
+//        imageView.setImageBitmap(recipe.imgBit);
+//        Picasso.get().load(recipe.imgUrl).into(imageView);
         return imageView;
     }
 

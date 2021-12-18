@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ObjectDetectorCustomActivity">
+    tools:context=".ObjectDetectorCustomActivity"
+    android:orientation="vertical">
 
+    <!--        android:scaleType="center"-->
     <ImageView
         android:id="@+id/ivUploadedPicture"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="center"
-        android:src="@drawable/tasty_food"
+        android:src="@drawable/b1"
         app:layout_constraintBottom_toBottomOf="@+id/cgLabels"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,14 +59,16 @@
             android:id="@+id/bChoosePicture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/choose_picture" />
+            android:text="@string/choose_picture"
+            android:background="@color/black" />
 
         <Button
             android:layout_marginLeft="20dp"
             android:id="@+id/bFindRecipes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/find_recipes" />
+            android:text="@string/find_recipes"
+            android:background="@color/black" />
 
     </LinearLayout>
 
